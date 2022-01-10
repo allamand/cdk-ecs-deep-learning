@@ -1,0 +1,1958 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+Object {
+  "Outputs": Object {
+    "EcsExecBucketOut": Object {
+      "Value": Object {
+        "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+      },
+    },
+    "EcsExecLogGroupOut": Object {
+      "Value": Object {
+        "Ref": "cdkeksdeeplearningECSExecLogGroup97222A0A",
+      },
+    },
+    "EcsKMSAlias": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "cdkeksdeeplearningECSKmsKey981CCF2A",
+          "Arn",
+        ],
+      },
+    },
+    "RunTaskpytorchTrainingCPU": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "aws ecs run-task --cluster ",
+            Object {
+              "Ref": "cdkeksdeeplearningCluster8F76F727",
+            },
+            " --task-definition ",
+            Object {
+              "Ref": "pytorchTrainingCPUTaskDefpytorchTrainingCPUBDEC819D",
+            },
+            " --placement-constraints type=memberOf,expression=\\"attribute:ecs.instance-type == p2.8xlarge\\" --network-configuration \\"awsvpcConfiguration={subnets=[",
+            Object {
+              "Ref": "cdkeksdeeplearningVPCPrivateSubnet1Subnet4EFA1CFD",
+            },
+            ",",
+            Object {
+              "Ref": "cdkeksdeeplearningVPCPrivateSubnet2SubnetEEE10260",
+            },
+            "],securityGroups=[",
+            Object {
+              "Fn::GetAtt": Array [
+                "pytorchTrainingCPUserviceSecurityGroup7DEAD07A",
+                "GroupId",
+              ],
+            },
+            "],assignPublicIp=DISABLED}\\"",
+          ],
+        ],
+      },
+    },
+    "RunTaskpytorchTrainingGPU": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "aws ecs run-task --cluster ",
+            Object {
+              "Ref": "cdkeksdeeplearningCluster8F76F727",
+            },
+            " --task-definition ",
+            Object {
+              "Ref": "pytorchTrainingGPUTaskDefpytorchTrainingGPU2F3EC170",
+            },
+            " --placement-constraints type=memberOf,expression=\\"attribute:ecs.instance-type == p2.8xlarge\\" --network-configuration \\"awsvpcConfiguration={subnets=[",
+            Object {
+              "Ref": "cdkeksdeeplearningVPCPrivateSubnet1Subnet4EFA1CFD",
+            },
+            ",",
+            Object {
+              "Ref": "cdkeksdeeplearningVPCPrivateSubnet2SubnetEEE10260",
+            },
+            "],securityGroups=[",
+            Object {
+              "Fn::GetAtt": Array [
+                "pytorchTrainingGPUserviceSecurityGroupF816D34D",
+                "GroupId",
+              ],
+            },
+            "],assignPublicIp=DISABLED}\\"",
+          ],
+        ],
+      },
+    },
+    "cdkeksdeeplearningClusterName44900FD5": Object {
+      "Value": Object {
+        "Ref": "cdkeksdeeplearningCluster8F76F727",
+      },
+    },
+    "cdkeksdeeplearningEcsService338D5BC0": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "cdkeksdeeplearningEc2ServiceB54B269C",
+          "Name",
+        ],
+      },
+    },
+    "cdkeksdeeplearningURLFCFE6CA0": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "cdkeksdeeplearningAliasRecordBB9F6FD5",
+            },
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1ArtifactHash0128B949": Object {
+      "Description": "Artifact hash for asset \\"1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1\\"",
+      "Type": "String",
+    },
+    "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1S3Bucket4842F32D": Object {
+      "Description": "S3 bucket for asset \\"1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1\\"",
+      "Type": "String",
+    },
+    "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1S3VersionKeyD0A0B57A": Object {
+      "Description": "S3 key for asset version \\"1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1\\"",
+      "Type": "String",
+    },
+    "SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
+    "cdkeksdeeplearningCertArnParameterParameterFD69D6B2": Object {
+      "Default": "CertificateArn-ecs.demo3.allamand.com",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
+      "DependsOn": Array [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1S3Bucket4842F32D",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1S3VersionKeyD0A0B57A",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters1f7e277bd526ebce1983fa1e7a84a5281ec533d9187caaebb773681bbf7bf4c1S3VersionKeyD0A0B57A",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Description": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "Lambda function for auto-deleting objects in ",
+              Object {
+                "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "__entrypoint__.handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cdkeksdeeplearningALB50E1E0D3": Object {
+      "DependsOn": Array [
+        "cdkeksdeeplearningVPCPublicSubnet1DefaultRoute57115CF1",
+        "cdkeksdeeplearningVPCPublicSubnet2DefaultRouteAD4941C9",
+      ],
+      "Properties": Object {
+        "LoadBalancerAttributes": Array [
+          Object {
+            "Key": "deletion_protection.enabled",
+            "Value": "false",
+          },
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "cdkeksdeeplearningALBSecurityGroup51D2DE99",
+              "GroupId",
+            ],
+          },
+        ],
+        "Subnets": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningVPCPublicSubnet1Subnet57E2A97A",
+          },
+          Object {
+            "Ref": "cdkeksdeeplearningVPCPublicSubnet2Subnet3FBE0540",
+          },
+        ],
+        "Type": "application",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    },
+    "cdkeksdeeplearningALBListener5A2161C1": Object {
+      "Properties": Object {
+        "Certificates": Array [
+          Object {
+            "CertificateArn": Object {
+              "Ref": "cdkeksdeeplearningCertArnParameterParameterFD69D6B2",
+            },
+          },
+        ],
+        "DefaultActions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "cdkeksdeeplearningALBListenermontecarloGroup4102DD5E",
+            },
+            "Type": "forward",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "cdkeksdeeplearningALB50E1E0D3",
+        },
+        "Port": 443,
+        "Protocol": "HTTPS",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "cdkeksdeeplearningALBListenermontecarloGroup4102DD5E": Object {
+      "Properties": Object {
+        "HealthCheckIntervalSeconds": 35,
+        "HealthCheckPath": "/",
+        "HealthCheckTimeoutSeconds": 30,
+        "HealthyThresholdCount": 2,
+        "Matcher": Object {
+          "HttpCode": "200",
+        },
+        "Port": 8080,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+          Object {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "120",
+          },
+        ],
+        "TargetType": "instance",
+        "UnhealthyThresholdCount": 3,
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "cdkeksdeeplearningALBSecurityGroup51D2DE99": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatically created Security Group for ELB testcdkeksdeeplearningALB96678AB4",
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "cdkeksdeeplearningALBSecurityGrouptotestcdkeksdeeplearningAsgInstanceSecurityGroup7FC66273ALLTRAFFICEC501393": Object {
+      "Properties": Object {
+        "Description": "to testcdkeksdeeplearningAsgInstanceSecurityGroup7FC66273:ALL TRAFFIC",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningAsgInstanceSecurityGroup7B0D17C6",
+            "GroupId",
+          ],
+        },
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningALBSecurityGroup51D2DE99",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "cdkeksdeeplearningAliasRecordBB9F6FD5": Object {
+      "Properties": Object {
+        "AliasTarget": Object {
+          "DNSName": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "dualstack.",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "cdkeksdeeplearningALB50E1E0D3",
+                    "DNSName",
+                  ],
+                },
+              ],
+            ],
+          },
+          "HostedZoneId": Object {
+            "Fn::GetAtt": Array [
+              "cdkeksdeeplearningALB50E1E0D3",
+              "CanonicalHostedZoneID",
+            ],
+          },
+        },
+        "HostedZoneId": "DUMMY",
+        "Name": "cdk-eks-deep-learning.ecs.demo3.allamand.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "cdkeksdeeplearningAsgASG66E30B16": Object {
+      "Properties": Object {
+        "LaunchConfigurationName": Object {
+          "Ref": "cdkeksdeeplearningAsgLaunchConfigDC6F8887",
+        },
+        "MaxSize": "4",
+        "MetricsCollection": Array [
+          Object {
+            "Granularity": "1Minute",
+          },
+        ],
+        "MinSize": "1",
+        "NewInstancesProtectedFromScaleIn": true,
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "PropagateAtLaunch": true,
+            "Value": "test/cdk-eks-deep-learning/Asg",
+          },
+        ],
+        "VPCZoneIdentifier": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningVPCPrivateSubnet1Subnet4EFA1CFD",
+          },
+          Object {
+            "Ref": "cdkeksdeeplearningVPCPrivateSubnet2SubnetEEE10260",
+          },
+        ],
+      },
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "UpdatePolicy": Object {
+        "AutoScalingScheduledAction": Object {
+          "IgnoreUnmodifiedGroupSizeProperties": true,
+        },
+      },
+    },
+    "cdkeksdeeplearningAsgInstanceProfile04C53BEB": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningAsgInstanceRole48199431",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "cdkeksdeeplearningAsgInstanceRole48199431": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ec2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/Asg",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cdkeksdeeplearningAsgInstanceRoleDefaultPolicyBE1E393A": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ecs:DeregisterContainerInstance",
+                "ecs:RegisterContainerInstance",
+                "ecs:Submit*",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "cdkeksdeeplearningCluster8F76F727",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ecs:Poll",
+                "ecs:StartTelemetrySession",
+              ],
+              "Condition": Object {
+                "ArnEquals": Object {
+                  "ecs:cluster": Object {
+                    "Fn::GetAtt": Array [
+                      "cdkeksdeeplearningCluster8F76F727",
+                      "Arn",
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ecs:DiscoverPollEndpoint",
+                "ecr:GetAuthorizationToken",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "cdkeksdeeplearningAsgInstanceRoleDefaultPolicyBE1E393A",
+        "Roles": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningAsgInstanceRole48199431",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "cdkeksdeeplearningAsgInstanceSecurityGroup7B0D17C6": Object {
+      "Properties": Object {
+        "GroupDescription": "test/cdk-eks-deep-learning/Asg/InstanceSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/Asg",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "cdkeksdeeplearningAsgInstanceSecurityGroupfromtestcdkeksdeeplearningALBSecurityGroup7E41A2EEALLTRAFFICB59A1199": Object {
+      "Properties": Object {
+        "Description": "from testcdkeksdeeplearningALBSecurityGroup7E41A2EE:ALL TRAFFIC",
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningAsgInstanceSecurityGroup7B0D17C6",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningALBSecurityGroup51D2DE99",
+            "GroupId",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "cdkeksdeeplearningAsgLaunchConfigDC6F8887": Object {
+      "DependsOn": Array [
+        "cdkeksdeeplearningAsgInstanceRoleDefaultPolicyBE1E393A",
+        "cdkeksdeeplearningAsgInstanceRole48199431",
+      ],
+      "Properties": Object {
+        "IamInstanceProfile": Object {
+          "Ref": "cdkeksdeeplearningAsgInstanceProfile04C53BEB",
+        },
+        "ImageId": Object {
+          "Ref": "SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
+        "InstanceMonitoring": true,
+        "InstanceType": "p2.8xlarge",
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "cdkeksdeeplearningAsgInstanceSecurityGroup7B0D17C6",
+              "GroupId",
+            ],
+          },
+        ],
+        "UserData": Object {
+          "Fn::Base64": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "#!/bin/bash
+echo ECS_CLUSTER=",
+                Object {
+                  "Ref": "cdkeksdeeplearningCluster8F76F727",
+                },
+                " >> /etc/ecs/ecs.config
+sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
+sudo service iptables save
+echo ECS_AWSVPC_BLOCK_IMDS=true >> /etc/ecs/ecs.config",
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::AutoScaling::LaunchConfiguration",
+    },
+    "cdkeksdeeplearningCP168371FB5": Object {
+      "Properties": Object {
+        "AutoScalingGroupProvider": Object {
+          "AutoScalingGroupArn": Object {
+            "Ref": "cdkeksdeeplearningAsgASG66E30B16",
+          },
+          "ManagedScaling": Object {
+            "Status": "ENABLED",
+            "TargetCapacity": 100,
+          },
+          "ManagedTerminationProtection": "ENABLED",
+        },
+      },
+      "Type": "AWS::ECS::CapacityProvider",
+    },
+    "cdkeksdeeplearningCluster46C07C71": Object {
+      "Properties": Object {
+        "CapacityProviders": Array [
+          "FARGATE",
+          "FARGATE_SPOT",
+          Object {
+            "Ref": "cdkeksdeeplearningCP168371FB5",
+          },
+        ],
+        "Cluster": Object {
+          "Ref": "cdkeksdeeplearningCluster8F76F727",
+        },
+        "DefaultCapacityProviderStrategy": Array [],
+      },
+      "Type": "AWS::ECS::ClusterCapacityProviderAssociations",
+    },
+    "cdkeksdeeplearningCluster8F76F727": Object {
+      "Properties": Object {
+        "ClusterName": "cdk-eks-deep-learning",
+        "ClusterSettings": Array [
+          Object {
+            "Name": "containerInsights",
+            "Value": "enabled",
+          },
+        ],
+        "Configuration": Object {
+          "ExecuteCommandConfiguration": Object {
+            "KmsKeyId": Object {
+              "Fn::GetAtt": Array [
+                "cdkeksdeeplearningECSKmsKey981CCF2A",
+                "Arn",
+              ],
+            },
+            "LogConfiguration": Object {
+              "CloudWatchEncryptionEnabled": true,
+              "CloudWatchLogGroupName": Object {
+                "Ref": "cdkeksdeeplearningECSExecLogGroup97222A0A",
+              },
+              "S3BucketName": Object {
+                "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+              },
+              "S3EncryptionEnabled": true,
+              "S3KeyPrefix": "exec-command-output",
+            },
+            "Logging": "OVERRIDE",
+          },
+        },
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "cdkeksdeeplearningECSExecLogGroup97222A0A": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "KmsKeyId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningECSKmsKey981CCF2A",
+            "Arn",
+          ],
+        },
+        "LogGroupName": "/ecs/secu/exec/cdk-eks-deep-learning",
+        "RetentionInDays": 731,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "cdkeksdeeplearningECSKmsKey981CCF2A": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "KeyPolicy": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion",
+                "kms:GenerateDataKey",
+                "kms:TagResource",
+                "kms:UntagResource",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::1234567890:root",
+                    ],
+                  ],
+                },
+              },
+              "Resource": "*",
+            },
+            Object {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": "arn:aws:iam::1234567890:root",
+              },
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "kms:Encrypt*",
+                "kms:Decrypt*",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:Describe*",
+              ],
+              "Condition": Object {
+                "ArnLike": Object {
+                  "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:us-east-1:1234567890:*",
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "logs.us-east-1.amazonaws.com",
+              },
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::KMS::Key",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "cdkeksdeeplearningECSKmsKeyAlias2A79FEAF": Object {
+      "Properties": Object {
+        "AliasName": "alias/cdk-eks-deep-learning-kms-ecs-cdk-eks-deep-learning",
+        "TargetKeyId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningECSKmsKey981CCF2A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::KMS::Alias",
+    },
+    "cdkeksdeeplearningEc2ServiceB54B269C": Object {
+      "DependsOn": Array [
+        "cdkeksdeeplearningALBListenermontecarloGroup4102DD5E",
+        "cdkeksdeeplearningALBListener5A2161C1",
+      ],
+      "Properties": Object {
+        "CapacityProviderStrategy": Array [
+          Object {
+            "Base": 1,
+            "CapacityProvider": Object {
+              "Ref": "cdkeksdeeplearningCP168371FB5",
+            },
+            "Weight": 2,
+          },
+        ],
+        "Cluster": Object {
+          "Ref": "cdkeksdeeplearningCluster8F76F727",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50,
+        },
+        "EnableECSManagedTags": false,
+        "EnableExecuteCommand": true,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LoadBalancers": Array [
+          Object {
+            "ContainerName": "container",
+            "ContainerPort": 8080,
+            "TargetGroupArn": Object {
+              "Ref": "cdkeksdeeplearningALBListenermontecarloGroup4102DD5E",
+            },
+          },
+        ],
+        "SchedulingStrategy": "REPLICA",
+        "TaskDefinition": Object {
+          "Ref": "cdkeksdeeplearningF4868B97",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "cdkeksdeeplearningEc2ServiceTaskCountTargetCD1CBE47": Object {
+      "Properties": Object {
+        "MaxCapacity": 60,
+        "MinCapacity": 5,
+        "ResourceId": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "service/",
+              Object {
+                "Ref": "cdkeksdeeplearningCluster8F76F727",
+              },
+              "/",
+              Object {
+                "Fn::GetAtt": Array [
+                  "cdkeksdeeplearningEc2ServiceB54B269C",
+                  "Name",
+                ],
+              },
+            ],
+          ],
+        },
+        "RoleARN": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":iam::1234567890:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService",
+            ],
+          ],
+        },
+        "ScalableDimension": "ecs:service:DesiredCount",
+        "ServiceNamespace": "ecs",
+      },
+      "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+    },
+    "cdkeksdeeplearningEc2ServiceTaskCountTargetCpuScaling0F69B48B": Object {
+      "Properties": Object {
+        "PolicyName": "testcdkeksdeeplearningEc2ServiceTaskCountTargetCpuScaling08A11D2C",
+        "PolicyType": "TargetTrackingScaling",
+        "ScalingTargetId": Object {
+          "Ref": "cdkeksdeeplearningEc2ServiceTaskCountTargetCD1CBE47",
+        },
+        "TargetTrackingScalingPolicyConfiguration": Object {
+          "PredefinedMetricSpecification": Object {
+            "PredefinedMetricType": "ECSServiceAverageCPUUtilization",
+          },
+          "TargetValue": 50,
+        },
+      },
+      "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+    },
+    "cdkeksdeeplearningEc2ServiceTaskCountTargetRequestScaling96E8F8F8": Object {
+      "Properties": Object {
+        "PolicyName": "testcdkeksdeeplearningEc2ServiceTaskCountTargetRequestScaling598704A0",
+        "PolicyType": "TargetTrackingScaling",
+        "ScalingTargetId": Object {
+          "Ref": "cdkeksdeeplearningEc2ServiceTaskCountTargetCD1CBE47",
+        },
+        "TargetTrackingScalingPolicyConfiguration": Object {
+          "PredefinedMetricSpecification": Object {
+            "PredefinedMetricType": "ALBRequestCountPerTarget",
+            "ResourceLabel": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  Object {
+                    "Fn::Select": Array [
+                      1,
+                      Object {
+                        "Fn::Split": Array [
+                          "/",
+                          Object {
+                            "Ref": "cdkeksdeeplearningALBListener5A2161C1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  "/",
+                  Object {
+                    "Fn::Select": Array [
+                      2,
+                      Object {
+                        "Fn::Split": Array [
+                          "/",
+                          Object {
+                            "Ref": "cdkeksdeeplearningALBListener5A2161C1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  "/",
+                  Object {
+                    "Fn::Select": Array [
+                      3,
+                      Object {
+                        "Fn::Split": Array [
+                          "/",
+                          Object {
+                            "Ref": "cdkeksdeeplearningALBListener5A2161C1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  "/",
+                  Object {
+                    "Fn::GetAtt": Array [
+                      "cdkeksdeeplearningALBListenermontecarloGroup4102DD5E",
+                      "TargetGroupFullName",
+                    ],
+                  },
+                ],
+              ],
+            },
+          },
+          "TargetValue": 10000,
+        },
+      },
+      "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+    },
+    "cdkeksdeeplearningEcsExecBucketAutoDeleteObjectsCustomResource58F4B932": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "cdkeksdeeplearningEcsExecBucketPolicy561635BE",
+      ],
+      "Properties": Object {
+        "BucketName": Object {
+          "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+        },
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "cdkeksdeeplearningEcsExecBucketD6224574": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "BucketEncryption": Object {
+          "ServerSideEncryptionConfiguration": Array [
+            Object {
+              "ServerSideEncryptionByDefault": Object {
+                "KMSMasterKeyID": Object {
+                  "Fn::GetAtt": Array [
+                    "cdkeksdeeplearningECSKmsKey981CCF2A",
+                    "Arn",
+                  ],
+                },
+                "SSEAlgorithm": "aws:kms",
+              },
+            },
+          ],
+        },
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "cdkeksdeeplearningEcsExecBucketPolicy561635BE": Object {
+      "Properties": Object {
+        "Bucket": Object {
+          "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+        },
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::GetAtt": Array [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "cdkeksdeeplearningEcsExecBucketD6224574",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "cdkeksdeeplearningEcsExecBucketD6224574",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "cdkeksdeeplearningExecutionRole3C4528FC": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cdkeksdeeplearningExecutionRoleDefaultPolicy9FAE6BCC": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ecr:us-east-1:1234567890:repository/aws-cdk/assets",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "cdkeksdeeplearningcontainerLogGroup0BC5D35F",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "cdkeksdeeplearningExecutionRoleDefaultPolicy9FAE6BCC",
+        "Roles": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningExecutionRole3C4528FC",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "cdkeksdeeplearningF4868B97": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Cpu": 256,
+            "Essential": true,
+            "Image": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "1234567890.dkr.ecr.us-east-1.",
+                  Object {
+                    "Ref": "AWS::URLSuffix",
+                  },
+                  "/aws-cdk/assets:78046e553c9b6a8d4bb931dd6e7c08e82f392e185bdcb4c3ebf6632e79fb224c",
+                ],
+              ],
+            },
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "cdkeksdeeplearningcontainerLogGroup0BC5D35F",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "montecarlo",
+                "mode": "non-blocking",
+              },
+            },
+            "MemoryReservation": 256,
+            "Name": "container",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 8080,
+                "HostPort": 0,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+        ],
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningExecutionRole3C4528FC",
+            "Arn",
+          ],
+        },
+        "Family": "testcdkeksdeeplearning53B82994",
+        "NetworkMode": "bridge",
+        "RequiresCompatibilities": Array [
+          "EC2",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningTaskRoleB91B1F52",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "cdkeksdeeplearningTaskRoleB91B1F52": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "cdkeksdeeplearningTaskRoleDefaultPolicyA350C59A": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ssmmessages:CreateControlChannel",
+                "ssmmessages:CreateDataChannel",
+                "ssmmessages:OpenControlChannel",
+                "ssmmessages:OpenDataChannel",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "kms:Decrypt",
+                "kms:GenerateDataKey",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "cdkeksdeeplearningECSKmsKey981CCF2A",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "logs:DescribeLogGroups",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:logs:us-east-1:1234567890:log-group:",
+                    Object {
+                      "Ref": "cdkeksdeeplearningECSExecLogGroup97222A0A",
+                    },
+                    ":*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "s3:GetBucketLocation",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "s3:PutObject",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:s3:::",
+                    Object {
+                      "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "s3:GetEncryptionConfiguration",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:s3:::",
+                    Object {
+                      "Ref": "cdkeksdeeplearningEcsExecBucketD6224574",
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "cdkeksdeeplearningTaskRoleDefaultPolicyA350C59A",
+        "Roles": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningTaskRoleB91B1F52",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "cdkeksdeeplearningVPC7EF19A11": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "cdkeksdeeplearningVPCIGW4D3F2E6D": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet1DefaultRoute8B071744": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet1NATGateway7CB5EEBE",
+        },
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet1RouteTable3ADDAE71",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet1RouteTable3ADDAE71": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet1RouteTableAssociation4AC77F32": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet1RouteTable3ADDAE71",
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet1Subnet4EFA1CFD",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet1Subnet4EFA1CFD": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet2DefaultRoute3E1B10BA": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet2NATGateway41795115",
+        },
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet2RouteTable26271522",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet2RouteTable26271522": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet2RouteTableAssociation533F2BC8": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet2RouteTable26271522",
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPrivateSubnet2SubnetEEE10260",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "cdkeksdeeplearningVPCPrivateSubnet2SubnetEEE10260": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1DefaultRoute57115CF1": Object {
+      "DependsOn": Array [
+        "cdkeksdeeplearningVPCVPCGWE0B70A5C",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "cdkeksdeeplearningVPCIGW4D3F2E6D",
+        },
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet1RouteTable41F0FD85",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1EIPAB1FCA3D": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1NATGateway7CB5EEBE": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningVPCPublicSubnet1EIPAB1FCA3D",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet1Subnet57E2A97A",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1RouteTable41F0FD85": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1RouteTableAssociation59E0EA86": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet1RouteTable41F0FD85",
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet1Subnet57E2A97A",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet1Subnet57E2A97A": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2DefaultRouteAD4941C9": Object {
+      "DependsOn": Array [
+        "cdkeksdeeplearningVPCVPCGWE0B70A5C",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "cdkeksdeeplearningVPCIGW4D3F2E6D",
+        },
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet2RouteTable7A8DAC1C",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2EIP1F10F26F": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet2",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2NATGateway41795115": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "cdkeksdeeplearningVPCPublicSubnet2EIP1F10F26F",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet2Subnet3FBE0540",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet2",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2RouteTable7A8DAC1C": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2RouteTableAssociationA7E60A19": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet2RouteTable7A8DAC1C",
+        },
+        "SubnetId": Object {
+          "Ref": "cdkeksdeeplearningVPCPublicSubnet2Subnet3FBE0540",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "cdkeksdeeplearningVPCPublicSubnet2Subnet3FBE0540": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "test/cdk-eks-deep-learning/VPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "cdkeksdeeplearningVPCVPCGWE0B70A5C": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "cdkeksdeeplearningVPCIGW4D3F2E6D",
+        },
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "cdkeksdeeplearningcontainerLogGroup0BC5D35F": Object {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "cdkeksdeeplearningpolicy09D4199E": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ecs:ListTasks",
+                "ecs:DescribeTasks",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "cdkeksdeeplearningpolicy09D4199E",
+        "Roles": Array [
+          Object {
+            "Ref": "cdkeksdeeplearningTaskRoleB91B1F52",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "pytorchTrainingCPUTaskDefpytorchTrainingCPUBDEC819D": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [
+              "git clone https://github.com/pytorch/examples.git && python examples/mnist/main.py --no-cuda",
+            ],
+            "Cpu": 256,
+            "EntryPoint": Array [
+              "sh",
+              "-c",
+            ],
+            "Essential": true,
+            "Image": "763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.5.1-cpu-py36-ubuntu16.04",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "pytorchTrainingCPUTaskDefpytorchTrainingCPUpytorchLogGroup74837FF1",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "mnist",
+                "mode": "non-blocking",
+              },
+            },
+            "Memory": 4000,
+            "Name": "pytorch-training-container",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 80,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+        ],
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "pytorchTrainingCPUTaskDefpytorchTrainingCPUExecutionRole23ED5A1B",
+            "Arn",
+          ],
+        },
+        "Family": "testpytorchTrainingCPUTaskDefpytorchTrainingCPUE40467C9",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "EC2",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "pytorchTrainingCPUTaskDefpytorchTrainingCPUTaskRole12C09FA1",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "pytorchTrainingCPUTaskDefpytorchTrainingCPUExecutionRole23ED5A1B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "pytorchTrainingCPUTaskDefpytorchTrainingCPUExecutionRoleDefaultPolicy36D6C9B5": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "pytorchTrainingCPUTaskDefpytorchTrainingCPUpytorchLogGroup74837FF1",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "pytorchTrainingCPUTaskDefpytorchTrainingCPUExecutionRoleDefaultPolicy36D6C9B5",
+        "Roles": Array [
+          Object {
+            "Ref": "pytorchTrainingCPUTaskDefpytorchTrainingCPUExecutionRole23ED5A1B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "pytorchTrainingCPUTaskDefpytorchTrainingCPUTaskRole12C09FA1": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "pytorchTrainingCPUTaskDefpytorchTrainingCPUpytorchLogGroup74837FF1": Object {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "pytorchTrainingCPUserviceSecurityGroup7DEAD07A": Object {
+      "Properties": Object {
+        "GroupDescription": "ecs service securitygroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "pytorchTrainingGPUTaskDefpytorchTrainingGPU2F3EC170": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [
+              "git clone https://github.com/pytorch/examples.git && python examples/mnist/main.py --no-cuda",
+            ],
+            "Cpu": 256,
+            "EntryPoint": Array [
+              "sh",
+              "-c",
+            ],
+            "Essential": true,
+            "Image": "763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.5.1-cpu-py36-ubuntu16.04",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "pytorchTrainingGPUTaskDefpytorchTrainingGPUpytorchLogGroupE03C87E5",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "mnist",
+                "mode": "non-blocking",
+              },
+            },
+            "Memory": 4000,
+            "Name": "pytorch-training-container",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 80,
+                "Protocol": "tcp",
+              },
+            ],
+          },
+        ],
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "pytorchTrainingGPUTaskDefpytorchTrainingGPUExecutionRoleAF8CB2A8",
+            "Arn",
+          ],
+        },
+        "Family": "testpytorchTrainingGPUTaskDefpytorchTrainingGPUD7CA1CCC",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "EC2",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "pytorchTrainingGPUTaskDefpytorchTrainingGPUTaskRole4ABF7A11",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "pytorchTrainingGPUTaskDefpytorchTrainingGPUExecutionRoleAF8CB2A8": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "pytorchTrainingGPUTaskDefpytorchTrainingGPUExecutionRoleDefaultPolicy0C3D8D91": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "pytorchTrainingGPUTaskDefpytorchTrainingGPUpytorchLogGroupE03C87E5",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "pytorchTrainingGPUTaskDefpytorchTrainingGPUExecutionRoleDefaultPolicy0C3D8D91",
+        "Roles": Array [
+          Object {
+            "Ref": "pytorchTrainingGPUTaskDefpytorchTrainingGPUExecutionRoleAF8CB2A8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "pytorchTrainingGPUTaskDefpytorchTrainingGPUTaskRole4ABF7A11": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "pytorchTrainingGPUTaskDefpytorchTrainingGPUpytorchLogGroupE03C87E5": Object {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "pytorchTrainingGPUserviceSecurityGroupF816D34D": Object {
+      "Properties": Object {
+        "GroupDescription": "ecs service securitygroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "cdkeksdeeplearningVPC7EF19A11",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+  },
+}
+`;
