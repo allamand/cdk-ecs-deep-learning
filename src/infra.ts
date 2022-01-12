@@ -3,7 +3,7 @@ import { InstanceType, IVpc, Port, Vpc } from '@aws-cdk/aws-ec2';
 import {
   AmiHardwareType,
   AsgCapacityProvider, Cluster, EcsOptimizedImage,
-  ExecuteCommandLogging
+  ExecuteCommandLogging,
 } from '@aws-cdk/aws-ecs';
 import { ApplicationListener, ApplicationLoadBalancer, ListenerCertificate } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { Key } from '@aws-cdk/aws-kms';
@@ -34,7 +34,7 @@ export class Infra extends Construct {
   constructor(scope: Construct, id: string, props: InfraProps) {
     super(scope, id);
     const stack = Stack.of(this);
-     
+
     //Define VPC
     if (props.vpcTagName) {
       if (props.vpcTagName == 'default') {

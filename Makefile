@@ -1,4 +1,6 @@
 
+CDK_STACK_NAME?=cdk-eks-deep-learning2
+
 diff:
 	npx cdk diff
 
@@ -16,3 +18,7 @@ deploy-no-rollback: check
 
 destroy:
 	npx cdk destroy
+
+
+describe:
+	aws cloudformation describe-stacks --stack-name $(CDK_STACK_NAME) --query "Stacks[*].Outputs" --output table 

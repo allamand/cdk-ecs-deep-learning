@@ -28,7 +28,7 @@ export class PyTorchTrainingGPU extends Construct {
     });
 
     const pytorchTrainingGPU = new Ec2TaskDefinition(this, 'TaskDefGPU' + id, {
-      
+
       networkMode: NetworkMode.AWS_VPC,
       //placementConstraints: [PlacementConstraint.memberOf(`attributes:ecs.instance-type==${MACHINE_TYPE}`)],
       //"Invalid request provided: Create TaskDefinition: constraint.expression 'attributes:ecs.instance-type==p3.2xlarge'

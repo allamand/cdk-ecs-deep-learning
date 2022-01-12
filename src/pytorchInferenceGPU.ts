@@ -4,7 +4,7 @@ import {
   ContainerImage,
   Ec2Service,
   Ec2TaskDefinition,
-  NetworkMode
+  NetworkMode,
 } from '@aws-cdk/aws-ecs';
 import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
 import { ARecord, HostedZone, RecordTarget } from '@aws-cdk/aws-route53';
@@ -102,7 +102,7 @@ export class PyTorchInferenceGPU extends Construct {
     //cd samples
     //curl -O https://s3.amazonaws.com/model-server/inputs/flower.jpg
     // curl -X POST http://localhost:8080/predictions/densenet -T flower.jpg
-    //curl -X POST https://inference.ecs.demo3.allamand.com/predictions/densenet -T flower.jpg
+    //curl -X POST https://inference.my-domain.com/predictions/densenet -T flower.jpg
     new CfnOutput(stack, 'Inference' + id, {
       value: 'https://' + record.domainName,
     });

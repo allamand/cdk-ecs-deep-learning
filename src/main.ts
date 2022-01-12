@@ -6,9 +6,9 @@ import { PyTorchTrainingGPU } from './pytorchTrainingGPU';
 
 //https://www.npmjs.com/package/@aws-cdk-containers/ecs-service-extensions?activeTab=readme
 
-const stackName = process.env.CDK_STACK_NAME ? process.env.CDK_STACK_NAME : 'cdk-eks-deep-learning2';
-const domainZone = process.env.DOMAIN_ZONE ? process.env.DOMAIN_ZONE : 'ecs.demo3.allamand.com';
-const vpcTagName = process.env.VPC_TAG_NAME; //? process.env.VPC_TAG_NAME : 'ecsworkshop-base/BaseVPC';
+const stackName = process.env.CDK_STACK_NAME ? process.env.CDK_STACK_NAME : 'cdk-eks-deep-learning';
+const domainZone = process.env.DOMAIN_ZONE ? process.env.DOMAIN_ZONE : 'my-hosted-zone.com';
+const vpcTagName = process.env.VPC_TAG_NAME;
 const clusterName = process.env.CLUSTER_NAME ? process.env.CLUSTER_NAME : stackName;
 
 const devEnv = {

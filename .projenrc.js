@@ -38,7 +38,7 @@ const project = new AwsCdkTypeScriptApp({
   //releaseToNpm: true,
   context: {},
 
-  gitignore: ['cdk.out', 'cdk.context.json'],
+  gitignore: ['cdk.out', 'cdk.context.json', '.env'],
 
   // cdkDependencies: undefined,  /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
   // deps: [],                    /* Runtime dependencies of this module. */
