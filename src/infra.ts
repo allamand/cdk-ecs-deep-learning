@@ -1,16 +1,15 @@
-import { AutoScalingGroup, GroupMetrics, Monitoring } from '@aws-cdk/aws-autoscaling';
-import { InstanceType, IVpc, Port, Vpc } from '@aws-cdk/aws-ec2';
-import {
-  AmiHardwareType,
-  AsgCapacityProvider, Cluster, EcsOptimizedImage,
-  ExecuteCommandLogging,
-} from '@aws-cdk/aws-ecs';
-import { ApplicationListener, ApplicationLoadBalancer, ListenerCertificate } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { Key } from '@aws-cdk/aws-kms';
-import { LogGroup } from '@aws-cdk/aws-logs';
-import { Bucket } from '@aws-cdk/aws-s3';
-import { StringParameter } from '@aws-cdk/aws-ssm';
-import { CfnOutput, Construct, RemovalPolicy, Stack } from '@aws-cdk/core';
+import { CfnOutput, RemovalPolicy, Stack } from 'aws-cdk-lib';
+import { AutoScalingGroup, GroupMetrics, Monitoring } from 'aws-cdk-lib/aws-autoscaling';
+import { InstanceType, Port } from 'aws-cdk-lib/aws-ec2';
+import { IVpc, Vpc } from 'aws-cdk-lib/aws-ec2';
+import * as ecs from 'aws-cdk-lib/aws-ecs';
+import { Cluster } from 'aws-cdk-lib/aws-ecs';
+import { ApplicationListener, ApplicationLoadBalancer, ListenerCertificate } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { Key } from 'aws-cdk-lib/aws-kms';
+import { LogGroup } from 'aws-cdk-lib/aws-logs';
+import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { StringParameter } from 'aws-cdk-lib/aws-ssm';
+import { Construct } from 'constructs'
 
 export const MACHINE_TYPE = 'p2.8xlarge'; //p3.2xlarge
 
@@ -69,7 +68,7 @@ export class Infra extends Construct {
     //https://github.com/PasseiDireto/gh-runner-ecs-ec2-stack/blob/cc6c13824bec5081e2d39a7adf7e9a2d0c8210a1/cluster.ts
     const asgGPU: AutoScalingGroup = new AutoScalingGroup(this, 'Asg', {
       vpc: this.vpc,
-      machineImage: EcsOptimizedImage.amazonLinux2(AmiHardwareType.GPU),
+      machineImage: ecs.EcsOptimizedImage.amazonLinux2(ecs.AmiHardwareType.GPU),
 
       instanceType: new InstanceType(MACHINE_TYPE),
 
@@ -80,7 +79,7 @@ export class Infra extends Construct {
       // https://github.com/aws/aws-cdk/issues/11581
     });
 
-    const capacityProvider1 = new AsgCapacityProvider(this, 'CP1', {
+    const capacityProvider1 = new ecs.AsgCapacityProvider(this, 'CP1', {
       autoScalingGroup: asgGPU,
       enableManagedScaling: true,
       enableManagedTerminationProtection: true,
@@ -110,7 +109,7 @@ export class Infra extends Construct {
             s3EncryptionEnabled: true,
             s3KeyPrefix: 'exec-command-output',
           },
-          logging: ExecuteCommandLogging.OVERRIDE,
+          logging: ecs.ExecuteCommandLogging.OVERRIDE,
         },
       });
       //Cast cluster to Cluster instead of ICluster

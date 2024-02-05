@@ -6,28 +6,26 @@
     },
     {
       "name": "@types/node",
-      "version": "^14.17.0",
+      "version": "^18",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "aws-cdk",
-      "version": "^1.137.0",
+      "version": "^2.126.0",
       "type": "build"
     },
     {
-      "name": "eslint",
-      "type": "build"
-    },
-    {
-      "name": "eslint-import-resolver-node",
+      "name": "esbuild",
       "type": "build"
     },
     {
@@ -39,21 +37,17 @@
       "type": "build"
     },
     {
+      "name": "eslint",
+      "version": "^8",
+      "type": "build"
+    },
+    {
       "name": "jest",
       "type": "build"
     },
     {
       "name": "jest-junit",
-      "version": "^12",
-      "type": "build"
-    },
-    {
-      "name": "json-schema",
-      "type": "build"
-    },
-    {
-      "name": "npm-check-updates",
-      "version": "^11",
+      "version": "^15",
       "type": "build"
     },
     {
@@ -66,7 +60,6 @@
     },
     {
       "name": "ts-node",
-      "version": "^9",
       "type": "build"
     },
     {
@@ -74,93 +67,13 @@
       "type": "build"
     },
     {
-      "name": "@aws-cdk-containers/ecs-service-extensions",
-      "version": "^1.137.0",
+      "name": "aws-cdk-lib",
+      "version": "^2.126.0",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/assert",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-autoscaling",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-certificatemanager",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ec2",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ecr",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ecs-patterns",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ecs",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-elasticloadbalancingv2",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-iam",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-kms",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-logs",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-route53-targets",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-route53",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-s3",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-servicediscovery",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ssm",
-      "version": "^1.137.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/core",
-      "version": "^1.137.0",
+      "name": "constructs",
+      "version": "^10.0.5",
       "type": "runtime"
     }
   ],

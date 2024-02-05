@@ -1,8 +1,9 @@
-import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
+import { App, Stack, StackProps } from 'aws-cdk-lib';
 import { Infra } from './infra';
 import { PyTorchInferenceGPU } from './pytorchInferenceGPU';
 import { PyTorchTrainingCPU } from './pytorchTraining';
 import { PyTorchTrainingGPU } from './pytorchTrainingGPU';
+import { Construct } from 'constructs'
 
 //https://www.npmjs.com/package/@aws-cdk-containers/ecs-service-extensions?activeTab=readme
 

@@ -80,3 +80,28 @@ When done with the project you can free up your AWS resources
 ```bash
 pj destroy
 ```
+
+
+## Upgrading cdk v1 to cdk v2. (1.137 to 2.126.0)
+
+First upgrade projen
+
+npx projen upgrade
+
+/bin/sh: npm-check-updates: command not found
+
+npm i -g npm-check-updates && ncu -u && npm i
+
+Update .projenrc.js
+change cdkVersion, remove cdkDependencies
+
+npm outdated
+
+3. global replace ts files 
+
+- npm i aws-cdk-lib
+
+- '@aws-cdk/' to 'aws-cdk-lib/'
+- '@aws-cdk/core' to 'aws-cdk-lib'
+
+4. change Construct

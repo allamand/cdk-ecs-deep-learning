@@ -1,30 +1,30 @@
-const { AwsCdkTypeScriptApp } = require('projen');
-const project = new AwsCdkTypeScriptApp({
-  cdkVersion: '1.137.0',
+const { awscdk } = require('projen');
+const project = new awscdk.AwsCdkTypeScriptApp({
+  cdkVersion: '2.126.0',
   defaultReleaseBranch: 'main',
   name: 'cdk-ecs-deep-learning',
 
-  cdkDependencies: [
-    '@aws-cdk/aws-certificatemanager',
-    '@aws-cdk/aws-ec2',
-    '@aws-cdk/aws-ecr',
-    '@aws-cdk/aws-ecs',
-    '@aws-cdk/aws-ecs-patterns',
-    '@aws-cdk/aws-route53',
-    '@aws-cdk/aws-ssm',
-    '@aws-cdk/core',
-    '@aws-cdk-containers/ecs-service-extensions',
-    '@aws-cdk/aws-iam',
-    '@aws-cdk/aws-elasticloadbalancingv2',
-    '@aws-cdk/aws-servicediscovery',
-    '@aws-cdk/aws-route53-targets',
-    '@aws-cdk/aws-autoscaling',
-    '@aws-cdk/aws-kms',
-    '@aws-cdk/aws-logs',
-    '@aws-cdk/aws-s3',
-  ],
+  // cdkDependencies: [
+  //   '@aws-cdk/aws-certificatemanager',
+  //   '@aws-cdk/aws-ec2',
+  //   '@aws-cdk/aws-ecr',
+  //   '@aws-cdk/aws-ecs',
+  //   '@aws-cdk/aws-ecs-patterns',
+  //   '@aws-cdk/aws-route53',
+  //   '@aws-cdk/aws-ssm',
+  //   '@aws-cdk/core',
+  //   '@aws-cdk-containers/ecs-service-extensions',
+  //   '@aws-cdk/aws-iam',
+  //   '@aws-cdk/aws-elasticloadbalancingv2',
+  //   '@aws-cdk/aws-servicediscovery',
+  //   '@aws-cdk/aws-route53-targets',
+  //   '@aws-cdk/aws-autoscaling',
+  //   '@aws-cdk/aws-kms',
+  //   '@aws-cdk/aws-logs',
+  //   '@aws-cdk/aws-s3',
+  // ],
 
-  cdkTestDependencies: ['@aws-cdk/assert'],
+  //cdkTestDependencies: ['@aws-cdk/assert'],
 
   dependabot: false,
   //projenUpgradeSecret: 'YARN_UPGRADE_TOKEN',

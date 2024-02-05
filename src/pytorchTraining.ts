@@ -1,15 +1,10 @@
-import { SecurityGroup } from '@aws-cdk/aws-ec2';
-import {
-  AwsLogDriver,
-  AwsLogDriverMode,
-  ContainerDefinitionOptions,
-  ContainerImage, Ec2TaskDefinition,
-  NetworkMode,
-} from '@aws-cdk/aws-ecs';
-import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
-import { CfnOutput, Construct, Stack } from '@aws-cdk/core';
+import { Construct } from 'constructs'
 import { MACHINE_TYPE } from './infra';
 import { PyTorchServiceProps } from './pytorchUtils';
+import { SecurityGroup } from 'aws-cdk-lib/aws-ec2';
+import { AwsLogDriver, AwsLogDriverMode, ContainerDefinitionOptions, ContainerImage, Ec2TaskDefinition, NetworkMode } from 'aws-cdk-lib/aws-ecs';
+import { CfnOutput, Stack } from 'aws-cdk-lib';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 /*
  ** //https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html

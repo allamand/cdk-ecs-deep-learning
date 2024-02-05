@@ -1,16 +1,10 @@
-import {
-  AwsLogDriver,
-  AwsLogDriverMode,
-  ContainerImage,
-  Ec2Service,
-  Ec2TaskDefinition,
-  NetworkMode,
-} from '@aws-cdk/aws-ecs';
-import { Effect, PolicyStatement } from '@aws-cdk/aws-iam';
-import { ARecord, HostedZone, RecordTarget } from '@aws-cdk/aws-route53';
-import { LoadBalancerTarget } from '@aws-cdk/aws-route53-targets';
-import { CfnOutput, Construct, Duration, Stack } from '@aws-cdk/core';
+import { Construct } from 'constructs'
 import { PyTorchServiceProps } from './pytorchUtils';
+import { AwsLogDriver, AwsLogDriverMode, ContainerImage, Ec2Service, Ec2TaskDefinition, NetworkMode } from 'aws-cdk-lib/aws-ecs';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
+import { LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';
+import { CfnOutput, Duration, Stack } from 'aws-cdk-lib';
 
 /*
  ** //https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html

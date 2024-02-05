@@ -1,9 +1,10 @@
-import { IVpc } from '@aws-cdk/aws-ec2';
-import { ICluster } from '@aws-cdk/aws-ecs';
-import { ApplicationListener, ApplicationLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { Key } from '@aws-cdk/aws-kms';
-import { LogGroup } from '@aws-cdk/aws-logs';
-import { Bucket } from '@aws-cdk/aws-s3';
+import { IVpc } from "aws-cdk-lib/aws-ec2";
+import { ICluster } from "aws-cdk-lib/aws-ecs";
+import { ApplicationListener, ApplicationLoadBalancer } from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import { Key } from "aws-cdk-lib/aws-kms";
+import { LogGroup } from "aws-cdk-lib/aws-logs";
+import { Bucket } from "aws-cdk-lib/aws-s3";
+
 
 /**
  * construct properties for EksUtils
